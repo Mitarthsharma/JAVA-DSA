@@ -63,28 +63,99 @@ public class Arrays {
         int[] newArr=new int[arr.length];
         int j=0;
 
-        for(int i=arr.length-k;i< arr.length;i++){
-            newArr[j]=arr[i];
-            j++;
+//        for(int i=arr.length-k;i< arr.length;i++){
+//            newArr[j]=arr[i];
+//            j++;
+//
+//        }
+//        for(int m=0;m<arr.length-k;m++){
+//            newArr[j]=arr[m];
+//            j++;
+//        }
+//        for (int i : newArr) {
+//            System.out.println(i);
+//        }
+        reverse(arr,0,arr.length-1);
+        reverse(arr,0,k-1);
+       reverse(arr,k, arr.length-1);
+        for (int i : arr) {
+            System.out.print(i);
+        }
+
+
+    }
+    public static void reverse(int[] arr, int left, int right) {
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+
+            left++;
+            right--;
+        }
+    }
+
+    public static int selLStock(int[] arr){
+        int curr=Integer.MAX_VALUE;
+        int profit=0;
+        int maxProfit=0;
+        for(int i=0;i<arr.length;i++){
+            if(curr>arr[i]){
+                curr=arr[i];
+            }
+            profit=arr[i]-curr;
+            if(profit>maxProfit){
+                maxProfit=profit;
+            }
+        }
+//        System.out.println(profit);
+        return maxProfit;
+    }
+
+
+    public static void maxSub(int[] arr){
+
+        int maxSum=Integer.MIN_VALUE;
+        for(int i=0;i< arr.length;i++){
+            int sum=0;
+            for(int j=i;j<arr.length;j++){
+                sum+=arr[j];
+                if(sum>maxSum){
+                    maxSum=sum;
+                }
+
+            }
 
         }
-        for(int m=0;m<arr.length-k;m++){
-            newArr[j]=arr[m];
-            j++;
-        }
-        for (int i : newArr) {
-            System.out.println(i);
-        }
+        System.out.println(maxSum);
+    }
 
+    public static void kadane(int[] arr){
+        int sum=0;
+        int maxSum=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            if(sum<arr[i]){
+                sum=arr[i];
+            }
+            if(maxSum<sum){
+                maxSum=sum;
+            }
+;        }
+        System.out.println(maxSum);
     }
 
     public static void main(String[] args){
-        int[] arr={1, 2, 3, 4, 5, 6, 7};
+        int[] arr={1,2,3,4};
 //        System.out.println(max(arr));
 //        moveZeros(arr);
 //        removeDuplicate(arr);
 //        removeVal(arr,3);
-        rotateArray(arr,3);
+//        rotateArray(arr,3);
+//        System.out.println(  selLStock(arr));
+        maxSub(arr);
+        kadane(arr);
+
 
 
     }
