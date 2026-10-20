@@ -145,16 +145,33 @@ public class Arrays {
         System.out.println(maxSum);
     }
 
+    public static int sliding(int[] arr){
+        int k=3;
+        int currSum=0;
+        int maxSum=0;
+        for(int i=0;i<arr.length-k;i++){
+            currSum=0;
+            for(int j=i;j<=i+k-1;j++){
+                currSum+=arr[j];
+                if(currSum>maxSum){
+                    maxSum=currSum;
+                }
+            }
+        }
+        return maxSum;
+    }
+
     public static void main(String[] args){
-        int[] arr={1,2,3,4};
+        int[] arr={2,1,5,2,4,3};
 //        System.out.println(max(arr));
 //        moveZeros(arr);
 //        removeDuplicate(arr);
 //        removeVal(arr,3);
 //        rotateArray(arr,3);
 //        System.out.println(  selLStock(arr));
-        maxSub(arr);
-        kadane(arr);
+//        maxSub(arr);
+//        kadane(arr);
+        System.out.println(sliding(arr));
 
 
 
